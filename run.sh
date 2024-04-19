@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Set the entrypoint of your module
-SCRIPT_PATH='entrypoint_process.R'
+SCRIPT='entrypoint_process.R'
+
 
 # Check if all the arguments are provided
 if [ $# -lt 2 ]; then
-    echo "Usage: $0 <output_dir> <name> [<input_file1> <input_file2> ...] [<extra_args> ...]"
+    echo "Usage: $0 --output_dir <output_dir> --name <name> [--<input_file_key_1> <input_file1> --<input_file_key_2> <input_file2> ...] [<extra_args> ...]"
     exit 1
 fi
 
@@ -14,8 +15,9 @@ output_dir=$1
 name=$2
 
 # Check if the Python/R script file exists
-if [ ! -f "$SCRIPT_PATH" ]; then
-    echo "Error: Python/R script '$SCRIPT_PATH' not found."
+script_path="$(dirname "$0")/$SCRIPT"
+if [ ! -f "$script_path" ]; then
+    echo "Error: Python/R script '$script_path' not found."
     exit 1
 fi
 
@@ -28,12 +30,12 @@ fi
 shift 2
 
 # Run the Python/R script with the provided arguments
-extension="${SCRIPT_PATH##*.}"
+extension="${SCRIPT##*.}"
 case "$extension" in
     "py")
-        python3 "$SCRIPT_PATH" --output_dir "$output_dir" --name "$name" "$@"
+        python3 "$script_path" --output_dir "$output_dir" --name "$name" "$@"
         ;;
     "R")
-        Rscript "$SCRIPT_PATH" --output_dir "$output_dir" --name "$name" "$@"
+        Rscript "$script_path" --output_dir "$output_dir" --name "$name" "$@"
         ;;
 esac

@@ -6,9 +6,10 @@ parser <- ArgumentParser(description="Process dataset files")
 # Add arguments
 parser$add_argument("--output_dir", "-o", dest="output_dir", type="character", help="output directory where files will be saved")
 parser$add_argument("--name", "-n", dest="name", type="character", help="name of the dataset")
-parser$add_argument("--input_files", "-i", dest="input_files", type="character", help="input files to be processed")
-parser$add_argument("-a", "--arg_a", dest="arg_a", help="extra argument a", default="0")
-parser$add_argument("-b", "--arg_b", dest="arg_b", help="extra argument b", default="0")
+parser$add_argument("--data.counts", dest="data_counts", type="character", help="input file #1")
+parser$add_argument("--data.meta", dest="data_meta", type="character", help="input file #2")
+parser$add_argument("-a", dest="arg_a", help="extra argument a", default="0")
+parser$add_argument("-b", dest="arg_b", help="extra argument b", default="0")
 
 # Parse command-line arguments
 opt <- parser$parse_args()
@@ -20,7 +21,9 @@ if (is.null(opt$output_dir) || is.null(opt$name)) {
 
 output_dir <- opt$output_dir
 name <- opt$name
-input_files <- unlist(strsplit(opt$input_files, ","))
+data_counts_input <- opt$data_counts
+data_meta_input <- opt$data_meta
+input_files <- c(data_counts_input, data_meta_input)
 a <- as.double(opt$arg_a)
 b <- as.double(opt$arg_b)
 
