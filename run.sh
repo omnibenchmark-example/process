@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source the configuration file
-source config.cfg
+source "$(dirname "$0")/config.cfg"
 
 
 # Check if all the arguments are provided
