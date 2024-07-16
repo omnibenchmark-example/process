@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Set the entrypoint of your module
-SCRIPT='entrypoint_process.R'
+# Source the configuration file
+source config.cfg
 
 
 # Check if all the arguments are provided
