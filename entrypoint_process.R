@@ -8,8 +8,8 @@ parser$add_argument("--output_dir", "-o", dest="output_dir", type="character", h
 parser$add_argument("--name", "-n", dest="name", type="character", help="name of the dataset")
 parser$add_argument("--data.counts", dest="data_counts", type="character", help="input file #1")
 parser$add_argument("--data.meta", dest="data_meta", type="character", help="input file #2")
-parser$add_argument("-a", dest="arg_a", help="extra argument a", default="0")
-parser$add_argument("-b", dest="arg_b", help="extra argument b", default="0")
+parser$add_argument("-a", "--a", dest="arg_a", help="extra argument a", default="0")
+parser$add_argument("-b", "--b", dest="arg_b", help="extra argument b", default="0")
 
 # Parse command-line arguments
 opt <- parser$parse_args()
