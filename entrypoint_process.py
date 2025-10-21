@@ -36,7 +36,7 @@ def main():
     processed_content.append(module_message)
 
     # Write output to gzipped file
-    output_path = os.path.join(output_dir, f"{name}.txt.gz")
+    output_path = os.path.join(output_dir, f"{name}.processed.txt.gz")
     with open(output_path, 'wt') as out_file:
         out_file.writelines(processed_content)
 
