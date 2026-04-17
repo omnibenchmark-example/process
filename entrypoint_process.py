@@ -1,5 +1,6 @@
 import argparse
 import os
+import time
 
 
 def main():
@@ -13,6 +14,7 @@ def main():
     parser.add_argument("--data.meta", dest="data_meta", type=str, help="input file #2")
     parser.add_argument("-a", "--a", dest="arg_a", type=float, default=0, help="extra argument a")
     parser.add_argument("-b", "--b", dest="arg_b", type=float, default=0, help="extra argument b")
+    parser.add_argument("--sleep", dest="sleep", type=float, default=0, help="sleep for N seconds before processing")
 
     # Parse arguments
     args = parser.parse_args()
@@ -24,6 +26,10 @@ def main():
     input_files = [f for f in [data_counts_input, data_meta_input] if f]
     a = args.arg_a
     b = args.arg_b
+    sleep_secs = args.sleep
+
+    if sleep_secs > 0:
+        time.sleep(sleep_secs)
 
     # Read and combine content from input files
     processed_content = []
